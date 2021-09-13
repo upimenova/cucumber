@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@wdio/cli": "^7.12.1",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1"
+  },
+  "name": "wdio-cucumber",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx wdio wdio.conf.js --cucumberOpts.tagExpression='@tag'"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@wdio/allure-reporter": "^7.10.1",
+    "@wdio/cucumber-framework": "^7.12.1",
+    "@wdio/local-runner": "^7.12.1",
+    "@wdio/selenium-standalone-service": "^7.10.1",
+    "@wdio/spec-reporter": "^7.10.1",
+    "fs-extra": "^10.0.0",
+    "multiple-cucumber-html-reporter": "^1.18.0",
+    "wdio-cucumber-reporter": "^0.0.2",
+    "wdio-cucumberjs-json-reporter": "^4.1.1"
+  }
+}
