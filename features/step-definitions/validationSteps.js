@@ -1,6 +1,4 @@
-
-
-const { Given, When, Then } = require('@wdio/cucumber-framework');
+const { Then } = require('@wdio/cucumber-framework');
 const expectChai = require('chai').expect;
 
 const helper = require('../../helpers/element-helper.js');
@@ -55,11 +53,6 @@ Then(`I wait until {locator} element is visible`, async (element) => {
 
 });
 
-Then(`I expect {locator} element css property {property} is {value}`, async (element, attrName, expectedValue) => {
- 
-  await expect(($(element)).getCssValue(attrName)).toBe(expectedValue);
-});
-
 Then('Items of {locator} element contain {string} text', async  (locator, text) =>{
   return expect($$(locator)).toHaveText(text)
    
@@ -73,3 +66,21 @@ Then('Items of {locator} element contain {string} text', async  (locator, text) 
         });
       }));
     });
+
+    Then('Element {locator} has {string} tag name', async  (locator, value) =>{
+      var tag = browser.execute('return arguments[0].tagName', locator);
+      return expect(tag).toEqual(value);
+    });
+
+    Then('New check of Page title is equal to {string}', async  (value) =>{
+      await browser.execute("return document.title;");
+      });
+
+      Then(`Element {locator} is visible`, async (element) => {
+        await browser.execute("document.querySelector('" + element + "').toBeDisplayed()");
+      });
+
+      Then('Element {locator} has {string} attribute {string} value', async  (locator, attr, value) =>{
+        return expect($(locator)).toHaveAttr(attr, value)
+         
+           });

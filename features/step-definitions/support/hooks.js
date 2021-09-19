@@ -13,6 +13,14 @@ Before("@mobile", async () => {
     await browser.deleteCookies();
     await browser.setWindowSize(700, 900);
 });
+Before("@iPad", async () => {
+    await browser.emulateDevice('iPad Mini');
+    await browser.enablePerformanceAudits({
+      networkThrottling: 'Good 3G',
+      cpuThrottling: 4,
+      formFactor: 'mobile'
+  }) 
+});
 
 After(async (scenario) => {
     // if(scenario.result.status === 'FAILED'){

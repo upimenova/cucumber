@@ -5,7 +5,7 @@ class OnlinerMain extends BasePage {
     constructor() {
         super()
     }
-    get CartButton() { return '.auth-bar__item--cart'};
+    get CartButton() { return '//*[contains(@class,\'auth-bar__item--cart\')]'};
 
 
 

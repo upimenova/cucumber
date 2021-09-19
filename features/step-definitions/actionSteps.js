@@ -1,9 +1,4 @@
-
-
-const { Given, When, Then } = require('@wdio/cucumber-framework');
-
-
-
+const { Given, When } = require('@wdio/cucumber-framework');
 Given('User navigates to {landing-url}', function (url) {
     const currentUrl = browser.getUrl();
     // maybe we are already there?
@@ -21,13 +16,11 @@ When('I sleep {int} second(s)', async (number) => {
     return await browser.pause(Math.floor(seconds * 1000));
 });
 
-
 When(`I enter {string} text into {locator} element`, async (givenText, element) => {
     return await $(element).setValue(givenText);
 });
 
 When(`I delete symbol in element`, async () => {
-  
   return await browser.keys('\uE003');
 });
 
@@ -40,11 +33,18 @@ When(`I switch to {locator} element`, async (element) => {
   }));
 });
 
+When(`I click {locator} new element`, async (element) => {
+  return browser.execute("document.querySelector('" + element + "').click()");
+});
+
 When(`I hover {locator} element`, async (element) => {
-  return browser.waitUntil(async () => { return (await browser.moveToObject($(element))) }).then(() => {
-  }, (error => {
-    return browser.moveToObject($(element)).then(url => {
-      throw new Error(`Element is not hovered`);
-    });
-  }));
+  await browser.execute("document.querySelector('" + element + "').addEventListener('mouseover', function() {console.log('Event triggered');})");
+});
+
+When(`I scroll the page to {locator}`, async (element) => {
+  await browser.execute("document.querySelector('" + element + "').scrollIntoView()");
+});
+
+When(`I wait for {locator} element to load`, async (locator) => {
+  await browser.execute("document.querySelector('" + locator + "').waitForExist()");
 });

@@ -17,7 +17,7 @@ Feature: Onliner Main Page
     And I delete symbol in element
     Then Input value of "OnlinerMain|Header|SearchField" element contains "iPhon" text
 
-  # Scenario: Cart
-  #   When I hover "OnlinerMain|CartButton" element
-  #   Then I expect "OnlinerMain|CartButton" element css property "z-index" is "2"
+  Scenario: Cart click
+    When I click "OnlinerMain|CartButton" cart element
+    Then Page URL is equal to "https://cart.onliner.by/"
    
